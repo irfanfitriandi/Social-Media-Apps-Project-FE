@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Manrope", sans-serif;
+  color: darkslategray;
+  letter-spacing: 0.05rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+fp {
+  font-family: "Poppins", sans-serif;
+}
