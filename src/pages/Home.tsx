@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Layout } from "../components/Layout";
-import { Input, FileInput } from "react-daisyui";
+import { Input, FileInput, Button } from "react-daisyui";
 import { FaCommentDots, FaImages } from "react-icons/fa";
 
 function Home() {
+  const [isShownPost, setisShownPost] = useState(false);
+
+  const handleClickPost = () => {
+    setisShownPost((current) => !current);
+  };
   return (
     <Layout>
       <div className="flex gap-2 my-5 items-center">
@@ -13,12 +18,41 @@ function Home() {
           alt="photo-profile"
           className="w-16 rounded-full"
         />
-        <Input
-          placeholder="What's on your mind?"
-          className="w-full rounded-xl border-2 border-secondary h-12"
-        />
+        {!isShownPost ? (
+          <Input
+            placeholder="What's on your mind?"
+            className="w-full rounded-xl border-2 border-secondary h-12"
+            onClick={handleClickPost}
+          />
+        ) : (
+          <h3
+            onClick={handleClickPost}
+            className="text-2xl ml-2 cursor-pointer"
+          >
+            Dybala
+          </h3>
+        )}
       </div>
-      <div className="bg-content border-2 border-secondary my-5 rounded-xl">
+      {isShownPost && (
+        <div
+          className="px-2 "
+          style={{ transition: "visibility 0s, opacity 0.5s linear" }}
+        >
+          <textarea
+            rows={9}
+            className="w-full bg-content border-2 border-secondary rounded-xl p-3"
+          ></textarea>
+          <div className="flex justify-end gap-2">
+            <Button className="mt-2 border-[#606770] w-24 capitalize ">
+              <FaImages className="w-6 h-6" />
+            </Button>
+            <Button className="mt-2 border-[#606770] w-24 capitalize ">
+              Post
+            </Button>
+          </div>
+        </div>
+      )}
+      <div className="bg-content border-2 border-secondary m-5 rounded-xl">
         <div className="flex items-center gap-3 p-2">
           <img
             src="https://pbs.twimg.com/profile_images/1610613801526890500/aBOa83uV_400x400.jpg"
