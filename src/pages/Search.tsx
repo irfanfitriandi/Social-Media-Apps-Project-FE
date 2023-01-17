@@ -7,11 +7,11 @@ import { IoMdSearch } from "react-icons/io";
 function Search() {
   return (
     <Layout>
-      <div className="flex items-center gap-2 m-5">
+      <div className="flex items-center gap-2 my-5">
         <IoMdSearch className="text-4xl text-primary" />
         <Input placeholder="Search . . ." className="w-full h-10" />
       </div>
-      <div className="bg-com border-2 border-secondary rounded-xl mx-5 mb-5">
+      <div className="bg-com border-2 border-secondary rounded-xl mb-5">
         <div className="p-2 border-b-2 border-secondary">
           <div className="flex items-center gap-3 pb-2">
             <img
@@ -21,7 +21,7 @@ function Search() {
             />
             <div>
               <h3>Dybala</h3>
-              <p>halo ini bio</p>
+              <p>Dybala Rosario</p>
             </div>
           </div>
         </div>
@@ -34,7 +34,7 @@ function Search() {
             />
             <div>
               <h3>Dybala</h3>
-              <p>halo ini bio</p>
+              <p>Dybala Rosario</p>
             </div>
           </div>
         </div>
@@ -47,7 +47,7 @@ function Search() {
             />
             <div>
               <h3>Dybala</h3>
-              <p>halo ini bio</p>
+              <p>Dybala Rosario</p>
             </div>
           </div>
         </div>
