@@ -20,6 +20,7 @@ function Login() {
         <Input
           placeholder="Passsword"
           className="text-black bg-form border-2 border-secondary rounded-lg w-full mt-2"
+          type={"password"}
         />
       </div>
       <Form className="mt-4">

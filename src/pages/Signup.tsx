@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Input, Form, Toggle, Button } from "react-daisyui";
+import { parsePath } from "react-router-dom";
 
 import { LayoutSettings } from "../components/Layout";
 
@@ -16,9 +17,9 @@ function Signup() {
         />
       </div>
       <div className="mt-4">
-        <h1>Fullname</h1>
+        <h1>Full Name</h1>
         <Input
-          placeholder="Fullname"
+          placeholder="Full Name"
           className="text-black bg-form border-2 border-secondary rounded-lg w-full mt-2"
         />
       </div>
@@ -34,6 +35,7 @@ function Signup() {
         <Input
           placeholder="Password"
           className="text-black bg-form border-2 border-secondary rounded-lg w-full mt-2"
+          type={"password"}
         />
       </div>
       <div className="mt-4">
@@ -41,6 +43,7 @@ function Signup() {
         <Input
           placeholder="Confirm Password"
           className="text-black bg-form border-2 border-secondary rounded-lg w-full mt-2"
+          type={"password"}
         />
       </div>
       <Button className="w-full bg-primary text-white mt-8 hover:bg-accent">

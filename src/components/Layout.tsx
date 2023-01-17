@@ -10,7 +10,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
   return (
     <div className="mx-auto max-w-4xl bg-black w-full h-screen overflow-auto">
       <Header />
-      <div className="py-16">{children}</div>
+      <div className="py-16 px-5">{children}</div>
       <Navbar />
     </div>
   );
