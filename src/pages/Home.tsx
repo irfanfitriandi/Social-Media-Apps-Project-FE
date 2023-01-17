@@ -1,15 +1,54 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import { Layout } from "../components/Layout";
 import { Input, FileInput, Button } from "react-daisyui";
 import { FaCommentDots, FaImages } from "react-icons/fa";
 
+interface PostsType {
+  id_content: string;
+  content: string;
+  image: string;
+  create_at: string;
+  profilepicture: string;
+  users: [
+    {
+      id_user: string;
+      username: string;
+    }
+  ];
+  comment: string;
+}
+
 function Home() {
   const [isShownPost, setisShownPost] = useState(false);
+  const [posts, setPosts] = useState<PostsType[]>([]);
+  const navigate = useNavigate();
 
   const handleClickPost = () => {
     setisShownPost((current) => !current);
   };
+
+  const onClickDetail = (index: string) => {
+    navigate(`/detail-post/${index[0]}`);
+  };
+
+  useEffect(() => {
+    fetchDataPosts();
+  }, []);
+
+  function fetchDataPosts() {
+    axios
+      .get("https://virtserver.swaggerhub.com/icxz1/SosmedAPI/1.0.0/contents")
+      .then((res) => {
+        setPosts(res.data.data);
+        // console.log(res.data.data);
+      })
+      .catch((err) => {
+        alert(err.toString());
+      });
+  }
   return (
     <Layout>
       <div className="flex gap-2 my-5 items-center">
@@ -52,61 +91,45 @@ function Home() {
           </div>
         </div>
       )}
-      <div className="bg-content border-2 border-secondary my-5 rounded-xl">
-        <div className="flex items-center gap-3 p-2">
-          <img
-            src="https://pbs.twimg.com/profile_images/1610613801526890500/aBOa83uV_400x400.jpg"
-            alt="photo-profile"
-            className="w-12 rounded-full"
-          />
-          <div>
-            <h3>Dybala</h3>
-            <p className="text-xs">30 Feb at 11.11 PM</p>
+
+      {posts.map((post) => (
+        <div
+          key={post.id_content}
+          className="bg-content border-2 border-secondary my-5 rounded-xl"
+        >
+          <div className="flex items-center gap-3 p-2">
+            <img
+              src={post.profilepicture}
+              alt="photo-profile"
+              className="w-12 h-12 rounded-full"
+            />
+            <div>
+              <h3>{post.users[0].username}</h3>
+              <p className="text-xs">{post.create_at}</p>
+            </div>
+          </div>
+          <div className="flex flex-col p-4">
+            <img src={post.image} alt="image-content" className="rounded-xl" />
+            <p
+              className="pt-4 cursor-pointer"
+              onClick={() => {
+                onClickDetail(post.id_content);
+              }}
+            >
+              {post.content}
+            </p>
+          </div>
+          <div
+            className="flex justify-end items-center gap-3 border-t-2 border-secondary p-2 px-2 cursor-pointer"
+            onClick={() => {
+              onClickDetail(post.id_content);
+            }}
+          >
+            <FaCommentDots />
+            <p>{post.comment[0]}</p>
           </div>
         </div>
-        <div className="flex flex-col p-4">
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-            animi hic sequi quam! Repudiandae mollitia pariatur minus? Corrupti
-            excepturi earum, nihil officia magni ut ipsum error sit non
-            provident incidunt!
-          </p>
-        </div>
-        <div className="flex justify-end items-center gap-3 border-t-2 border-secondary pt-2 px-2">
-          <FaCommentDots />
-          <p>5</p>
-        </div>
-      </div>
-      <div className="bg-content border-2 border-secondary my-5 rounded-xl">
-        <div className="flex items-center gap-3 p-2">
-          <img
-            src="https://pbs.twimg.com/profile_images/1610613801526890500/aBOa83uV_400x400.jpg"
-            alt="photo-profile"
-            className="w-12 rounded-full"
-          />
-          <div>
-            <h3>Dybala</h3>
-            <p className="text-xs">30 Feb at 11.11 PM</p>
-          </div>
-        </div>
-        <div className="flex flex-col p-4">
-          <img
-            src="https://pbs.twimg.com/media/Fmd1Oy-aUAIqJyP?format=jpg&name=medium"
-            alt="image-content"
-            className="rounded-xl"
-          />
-          <p className="pt-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-            animi hic sequi quam! Repudiandae mollitia pariatur minus? Corrupti
-            excepturi earum, nihil officia magni ut ipsum error sit non
-            provident incidunt!
-          </p>
-        </div>
-        <div className="flex justify-end items-center gap-3 border-t-2 border-secondary pt-2 px-2">
-          <FaCommentDots />
-          <p>5</p>
-        </div>
-      </div>
+      ))}
     </Layout>
   );
 }
