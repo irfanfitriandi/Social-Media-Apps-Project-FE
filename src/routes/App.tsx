@@ -8,6 +8,7 @@ import DetailPost from "../pages/DetailPost";
 import Profile from "../pages/Profile";
 import Search from "../pages/Search";
 import Settings from "../pages/Settings";
+import { EditPost } from "../pages/EditPost";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: "/detail-post/:id_post",
     element: <DetailPost />,
+  },
+  {
+    path: "/edit-post/:id_post",
+    element: <EditPost />,
   },
   {
     path: "/profile/:id_user",
