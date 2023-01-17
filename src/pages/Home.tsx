@@ -52,7 +52,7 @@ function Home() {
           </div>
         </div>
       )}
-      <div className="bg-content border-2 border-secondary m-5 rounded-xl">
+      <div className="bg-content border-2 border-secondary my-5 rounded-xl">
         <div className="flex items-center gap-3 p-2">
           <img
             src="https://pbs.twimg.com/profile_images/1610613801526890500/aBOa83uV_400x400.jpg"
