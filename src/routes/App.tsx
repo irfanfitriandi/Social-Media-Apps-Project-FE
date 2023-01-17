@@ -1,11 +1,15 @@
 import React from "react";
 
+import Home from "../pages/Home";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
+import DetailPost from "../pages/DetailPost";
+import Profile from "../pages/Profile";
+
 function App() {
   return (
     <div>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Expedita cupiditate, necessitatibus consectetur, voluptatem ab animi reiciendis fuga earum esse amet incidunt accusantium officia nesciunt est minus hic facilis quo a.
-      </p>
+      <Login />
     </div>
   );
 }
