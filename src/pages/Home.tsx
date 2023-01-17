@@ -15,8 +15,8 @@ function Home() {
         />
         <Input
           placeholder="What's on your mind?"
-          className="w-full rounded-xl bg-content border-2 border-secondary h-12"
-        />        
+          className="w-full rounded-xl border-2 border-secondary h-12"
+        />
       </div>
       <div className="bg-content border-2 border-secondary m-5 rounded-xl">
         <div className="flex items-center gap-3 p-2">
@@ -25,7 +25,10 @@ function Home() {
             alt="photo-profile"
             className="w-12 rounded-full"
           />
-          <h3>Dybala</h3>
+          <div>
+            <h3>Dybala</h3>
+            <p className="text-xs">30 Feb at 11.11 PM</p>
+          </div>
         </div>
         <div className="flex flex-col p-4">
           <p>
@@ -47,7 +50,10 @@ function Home() {
             alt="photo-profile"
             className="w-12 rounded-full"
           />
-          <h3>Dybala</h3>
+          <div>
+            <h3>Dybala</h3>
+            <p className="text-xs">30 Feb at 11.11 PM</p>
+          </div>
         </div>
         <div className="flex flex-col p-4">
           <img

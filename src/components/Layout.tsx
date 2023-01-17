@@ -16,7 +16,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => {
   );
 };
 
-export const LayoutLogin: FC<LayoutProps> = ({ children }) => {
+export const LayoutSettings: FC<LayoutProps> = ({ children }) => {
   return (
     <div className="mx-auto max-w-4xl bg-black w-full h-screen overflow-auto flex flex-col justify-between">
       <div className="px-5 mb-8">{children}</div>
