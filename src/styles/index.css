@@ -7,14 +7,21 @@ body {
   padding: 0;
   margin: 0;
   font-family: "Manrope", sans-serif;
-  color: darkslategray;
+  background-image: url(../assets/bg.jpg);
   letter-spacing: 0.05rem;
+  color: white;
 }
 
 * {
   box-sizing: border-box;
 }
 
-fp {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Poppins", sans-serif;
+  font-weight: bold;
 }
