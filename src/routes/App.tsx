@@ -8,7 +8,7 @@ import DetailPost from "../pages/DetailPost";
 import Profile from "../pages/Profile";
 import Search from "../pages/Search";
 import Settings from "../pages/Settings";
-import { EditPost } from "../pages/EditPost";
+import EditPost from "../pages/EditPost";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +47,6 @@ const router = createBrowserRouter([
 
 function App() {
   return <RouterProvider router={router} />;
-
 }
 
 export default App;

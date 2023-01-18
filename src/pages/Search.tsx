@@ -1,15 +1,13 @@
-import React from "react";
-
 import { Layout } from "../components/Layout";
-import { Input } from "react-daisyui";
+import { InputStd } from "../components/Input";
 import { IoMdSearch } from "react-icons/io";
 
 function Search() {
   return (
     <Layout>
-      <div className="flex items-center gap-2 my-5">
-        <IoMdSearch className="text-4xl text-primary" />
-        <Input placeholder="Search . . ." className="w-full h-10" />
+      <div className="flex items-center gap-2 mt-5">
+        <IoMdSearch className="text-4xl text-primary mb-5" />
+        <InputStd placeholder="Search . . ." />
       </div>
       <div className="bg-com border-2 border-secondary rounded-xl mb-5">
         <div className="p-2 border-b-2 border-secondary">

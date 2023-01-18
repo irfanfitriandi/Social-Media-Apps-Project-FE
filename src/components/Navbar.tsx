@@ -1,6 +1,6 @@
-import React from "react";
-import { IoMdHome, IoMdSearch, IoIosPerson } from "react-icons/io";
 import { Link } from "react-router-dom";
+
+import { IoMdHome, IoMdSearch, IoIosPerson } from "react-icons/io";
 
 function Navbar() {
   return (
