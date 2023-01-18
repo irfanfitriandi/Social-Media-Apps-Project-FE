@@ -1,10 +1,7 @@
-import React from "react";
-
-import { ButtonPrimary, ButtonSecondary } from "../components/Button";
-import { Input, Form, Toggle } from "react-daisyui";
 import { LayoutSettings } from "../components/Layout";
-
-import { Link } from "react-router-dom";
+import { InputForm } from "../components/Input";
+import { ButtonPrimary, ButtonSecondary } from "../components/Button";
+import { Form, Toggle } from "react-daisyui";
 
 function Login() {
   return (
@@ -12,18 +9,11 @@ function Login() {
       <h1 className="text-center text-3xl p-5">Login</h1>
       <div className="mt-4">
         <h1>Username/Email</h1>
-        <Input
-          placeholder="Username/Email"
-          className="text-black bg-form border-2 border-secondary rounded-lg w-full mt-2"
-        />
+        <InputForm placeholder="Username/Email" />
       </div>
       <div className="mt-4">
         <h1>Passsword</h1>
-        <Input
-          placeholder="Passsword"
-          className="text-black bg-form border-2 border-secondary rounded-lg w-full mt-2"
-          type={"password"}
-        />
+        <InputForm placeholder="Passsword" type={"password"} />
       </div>
       <Form className="mt-4">
         <Form.Label title="Remember me">

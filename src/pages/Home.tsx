@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 import { Layout } from "../components/Layout";
 import { ButtonPrimary, ButtonSecondary } from "../components/Button";
 import { InputStd } from "../components/Input";
-import { CardPost } from "./Card";
+import { CardPost } from "../components/Card";
 import { FaImages } from "react-icons/fa";
 import { PostsType } from "../utils/types/posts";
 

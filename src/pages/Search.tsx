@@ -1,8 +1,5 @@
-import React from "react";
-
 import { Layout } from "../components/Layout";
 import { InputStd } from "../components/Input";
-import { Input } from "react-daisyui";
 import { IoMdSearch } from "react-icons/io";
 
 function Search() {

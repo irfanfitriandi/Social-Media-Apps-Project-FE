@@ -1,10 +1,8 @@
-import React from "react";
-
-import { ButtonPrimary, ButtonSecondary } from "../components/Button";
-import { LayoutProfile } from "../components/Layout";
-import { Button } from "react-daisyui";
-import { FaCommentDots } from "react-icons/fa";
 import { Link } from "react-router-dom";
+
+import { LayoutProfile } from "../components/Layout";
+import { ButtonPrimary, ButtonSecondary } from "../components/Button";
+import { FaCommentDots } from "react-icons/fa";
 
 function Profile() {
   return (

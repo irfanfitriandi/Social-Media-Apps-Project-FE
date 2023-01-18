@@ -1,10 +1,6 @@
-import React from "react";
-
+import { LayoutSettings } from "../components/Layout";
 import { ButtonPrimary } from "../components/Button";
 import { InputForm } from "../components/Input";
-import { parsePath } from "react-router-dom";
-
-import { LayoutSettings } from "../components/Layout";
 
 function Signup() {
   return (
