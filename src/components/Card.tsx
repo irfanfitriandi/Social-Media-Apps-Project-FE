@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 import { FaCommentDots } from "react-icons/fa";
 
 interface CardProps {
-  id: string;
+  id: number;
   ava: string;
   uname: string;
   date: string;
   imgPost?: string;
   caption: string;
-  comment?: string;
+  comment?: number;
 }
 
 interface CardDetailProps {
@@ -20,6 +20,16 @@ interface CardDetailProps {
   date?: string;
   imgPost?: string;
   caption?: string;
+  comment?: [
+    {
+      comment: string;
+      created_at: string;
+      id_comment: number;
+      id_user: number;
+      profilepicture: string;
+      username: string;
+    }
+  ];
 }
 
 export const CardPost: FC<CardProps> = ({
@@ -33,8 +43,8 @@ export const CardPost: FC<CardProps> = ({
 }) => {
   const navigate = useNavigate();
 
-  const onClickDetail = (index: string) => {
-    navigate(`/detail-post/${index[0]}`);
+  const onClickDetail = (index: number) => {
+    navigate(`/detail-post/${index}`);
   };
 
   return (
@@ -79,6 +89,7 @@ export const CardPostDetail: FC<CardDetailProps> = ({
   date,
   imgPost,
   caption,
+  comment,
 }) => {
   return (
     <div className="bg-content border-2 border-secondary my-5 rounded-xl">
@@ -95,6 +106,7 @@ export const CardPostDetail: FC<CardDetailProps> = ({
       </div>
       <div className="flex justify-end items-center gap-3 border-t-2 border-secondary p-2 px-2 cursor-pointer">
         <FaCommentDots />
+        <p>{comment?.length}</p>
       </div>
     </div>
   );

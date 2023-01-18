@@ -1,5 +1,5 @@
 export interface PostsType {
-  id_content: string;
+  id_content: number;
   content: string;
   image: string;
   create_at: string;
@@ -10,7 +10,7 @@ export interface PostsType {
       username: string;
     }
   ];
-  comments: string;
+  comments: number;
 }
 
 export interface PostType {
@@ -20,4 +20,14 @@ export interface PostType {
   image: string;
   profilepicture: string;
   username: string;
+  comment: [
+    {
+      comment: string;
+      created_at: string;
+      id_comment: number;
+      id_user: number;
+      profilepicture: string;
+      username: string;
+    }
+  ];
 }

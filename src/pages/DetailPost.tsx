@@ -24,6 +24,7 @@ function DetailPost() {
       )
       .then((res) => {
         setPost(res.data.data);
+        console.log(res.data.data);
       })
       .catch((err) => {
         alert(err.toString());
@@ -37,6 +38,7 @@ function DetailPost() {
         date={post?.create_at}
         imgPost={post?.image}
         caption={post?.content}
+        comment={post?.comment}
       />
       <div className="bg-com border-2 border-secondary my-3 rounded-xl">
         <div className="p-2 border-b-2 border-secondary">

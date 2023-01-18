@@ -40,10 +40,9 @@ function Home() {
           className="w-16 rounded-full"
         />
         {!isShownPost ? (
-          <InputStd
-            placeholder="What's on your mind?"
-            onClick={handleClickPost}
-          />
+          <div onClick={handleClickPost} className="w-full">
+            <InputStd placeholder="What's on your mind?" />
+          </div>
         ) : (
           <h3
             onClick={handleClickPost}
@@ -75,6 +74,7 @@ function Home() {
 
       {posts.map((post) => (
         <CardPost
+          key={post.id_content}
           id={post.id_content}
           ava={post.profilepicture}
           uname={post.users[0].username}
