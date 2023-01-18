@@ -1,4 +1,3 @@
-import React from "react";
 import { Button } from "react-daisyui";
 import { Layout } from "../components/Layout";
 
@@ -30,3 +29,5 @@ export const EditPost = () => {
     </Layout>
   );
 };
+
+export default EditPost;

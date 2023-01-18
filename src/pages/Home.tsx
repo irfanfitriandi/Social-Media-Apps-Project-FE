@@ -1,37 +1,19 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 import { Layout } from "../components/Layout";
-import { Input, FileInput, Button } from "react-daisyui";
-import { FaCommentDots, FaImages } from "react-icons/fa";
-
-interface PostsType {
-  id_content: string;
-  content: string;
-  image: string;
-  create_at: string;
-  profilepicture: string;
-  users: [
-    {
-      id_user: string;
-      username: string;
-    }
-  ];
-  comment: string;
-}
+import { ButtonPrimary, ButtonSecondary } from "../components/Button";
+import { InputStd } from "../components/Input";
+import { CardPost } from "../components/Card";
+import { FaImages } from "react-icons/fa";
+import { PostsType } from "../utils/types/posts";
 
 function Home() {
   const [isShownPost, setisShownPost] = useState(false);
   const [posts, setPosts] = useState<PostsType[]>([]);
-  const navigate = useNavigate();
 
   const handleClickPost = () => {
     setisShownPost((current) => !current);
-  };
-
-  const onClickDetail = (index: string) => {
-    navigate(`/detail-post/${index[0]}`);
   };
 
   useEffect(() => {
@@ -43,7 +25,7 @@ function Home() {
       .get("https://virtserver.swaggerhub.com/icxz1/SosmedAPI/1.0.0/contents")
       .then((res) => {
         setPosts(res.data.data);
-        // console.log(res.data.data);
+        console.log(res.data.data);
       })
       .catch((err) => {
         alert(err.toString());
@@ -58,9 +40,8 @@ function Home() {
           className="w-16 rounded-full"
         />
         {!isShownPost ? (
-          <Input
+          <InputStd
             placeholder="What's on your mind?"
-            className="w-full rounded-xl border-2 border-secondary h-12"
             onClick={handleClickPost}
           />
         ) : (
@@ -78,57 +59,30 @@ function Home() {
           style={{ transition: "visibility 0s, opacity 0.5s linear" }}
         >
           <textarea
+            placeholder="What's on your mind?"
             rows={9}
-            className="w-full bg-content border-2 border-secondary rounded-xl p-3"
+            className="w-full border-2 border-secondary rounded-xl p-3"
           ></textarea>
           <div className="flex justify-end gap-2">
-            <Button className="mt-2 border-[#606770] w-24 capitalize ">
-              <FaImages className="w-6 h-6" />
-            </Button>
-            <Button className="mt-2 border-[#606770] w-24 capitalize ">
-              Post
-            </Button>
+            <ButtonSecondary
+              className="w-1/4"
+              label={<FaImages className="text-xl" />}
+            />
+            <ButtonPrimary className="w-1/4" label="Post" />
           </div>
         </div>
       )}
 
       {posts.map((post) => (
-        <div
-          key={post.id_content}
-          className="bg-content border-2 border-secondary my-5 rounded-xl"
-        >
-          <div className="flex items-center gap-3 p-2">
-            <img
-              src={post.profilepicture}
-              alt="photo-profile"
-              className="w-12 h-12 rounded-full"
-            />
-            <div>
-              <h3>{post.users[0].username}</h3>
-              <p className="text-xs">{post.create_at}</p>
-            </div>
-          </div>
-          <div className="flex flex-col p-4">
-            <img src={post.image} alt="image-content" className="rounded-xl" />
-            <p
-              className="pt-4 cursor-pointer"
-              onClick={() => {
-                onClickDetail(post.id_content);
-              }}
-            >
-              {post.content}
-            </p>
-          </div>
-          <div
-            className="flex justify-end items-center gap-3 border-t-2 border-secondary p-2 px-2 cursor-pointer"
-            onClick={() => {
-              onClickDetail(post.id_content);
-            }}
-          >
-            <FaCommentDots />
-            <p>{post.comment[0]}</p>
-          </div>
-        </div>
+        <CardPost
+          id={post.id_content}
+          ava={post.profilepicture}
+          uname={post.users[0].username}
+          date={post.create_at}
+          imgPost={post.image}
+          caption={post.content}
+          comment={post.comments}
+        />
       ))}
     </Layout>
   );
