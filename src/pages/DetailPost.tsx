@@ -41,40 +41,24 @@ function DetailPost() {
         comment={post?.comment}
       />
       <div className="bg-com border-2 border-secondary my-3 rounded-xl">
-        <div className="p-2 border-b-2 border-secondary">
-          <div className="flex items-center gap-3 pb-2">
-            <img
-              src="https://pbs.twimg.com/profile_images/1610613801526890500/aBOa83uV_400x400.jpg"
-              alt="photo-profile"
-              className="w-12 rounded-full"
-            />
-            <h3>Dybala</h3>
+        {post?.comment.map((data) => (
+          <div
+            key={data.id_comment}
+            className="p-2 border-b-2 border-secondary"
+          >
+            <div className="flex items-center gap-3 pb-2">
+              <img
+                src={data.profilepicture}
+                alt="photo-profile"
+                className="w-12 h-12 rounded-full"
+              />
+              <h3>{data.username}</h3>
+            </div>
+            <p>{data.comment}</p>
           </div>
-          <p>Lorem ipsum dolor sit amet.</p>
-        </div>
-        <div className="p-2 border-b-2 border-secondary">
-          <div className="flex items-center gap-3 pb-2">
-            <img
-              src="https://pbs.twimg.com/profile_images/1610613801526890500/aBOa83uV_400x400.jpg"
-              alt="photo-profile"
-              className="w-12 rounded-full"
-            />
-            <h3>Dybala</h3>
-          </div>
-          <p>Lorem ipsum dolor sit amet.</p>
-        </div>
-        <div className="p-2 border-secondary">
-          <div className="flex items-center gap-3 pb-2">
-            <img
-              src="https://pbs.twimg.com/profile_images/1610613801526890500/aBOa83uV_400x400.jpg"
-              alt="photo-profile"
-              className="w-12 rounded-full"
-            />
-            <h3>Dybala</h3>
-          </div>
-          <p>Lorem ipsum dolor sit amet.</p>
-        </div>
+        ))}
       </div>
+
       <InputStd placeholder="Write a comment . . ." />
     </Layout>
   );
