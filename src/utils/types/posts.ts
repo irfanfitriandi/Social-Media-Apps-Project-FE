@@ -10,7 +10,7 @@ export interface PostsType {
       username: string;
     }
   ];
-  comment: string;
+  comments: string;
 }
 
 export interface PostType {

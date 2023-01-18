@@ -5,21 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Layout } from "../components/Layout";
 import { Input, FileInput, Button } from "react-daisyui";
 import { FaCommentDots, FaImages } from "react-icons/fa";
-
-interface PostsType {
-  id_content: string;
-  content: string;
-  image: string;
-  create_at: string;
-  profilepicture: string;
-  users: [
-    {
-      id_user: string;
-      username: string;
-    }
-  ];
-  comment: string;
-}
+import { PostsType } from "../utils/types/posts";
 
 function Home() {
   const [isShownPost, setisShownPost] = useState(false);
@@ -43,7 +29,7 @@ function Home() {
       .get("https://virtserver.swaggerhub.com/icxz1/SosmedAPI/1.0.0/contents")
       .then((res) => {
         setPosts(res.data.data);
-        // console.log(res.data.data);
+        console.log(res.data.data);
       })
       .catch((err) => {
         alert(err.toString());
@@ -126,7 +112,7 @@ function Home() {
             }}
           >
             <FaCommentDots />
-            <p>{post.comment[0]}</p>
+            <p>{post.comments}</p>
           </div>
         </div>
       ))}
