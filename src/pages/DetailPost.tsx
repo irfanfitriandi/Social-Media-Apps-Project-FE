@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
+
 import { Layout } from "../components/Layout";
+import { InputStd } from "../components/Input";
 import { FaCommentDots } from "react-icons/fa";
-import { Input } from "react-daisyui";
 import axios from "axios";
 import { PostType } from "../utils/types/posts";
 import { useParams } from "react-router";
@@ -109,10 +110,7 @@ function DetailPost() {
           <p>Lorem ipsum dolor sit amet.</p>
         </div>
       </div>
-      <Input
-        placeholder="Write a comment . . ."
-        className="w-full rounded-xl border-2 border-secondary h-12 mb-5"
-      />
+      <InputStd placeholder="Write a comment . . ." />
     </Layout>
   );
 }

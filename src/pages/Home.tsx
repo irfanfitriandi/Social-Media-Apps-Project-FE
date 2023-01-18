@@ -4,21 +4,17 @@ import { useNavigate } from "react-router-dom";
 
 import { Layout } from "../components/Layout";
 import { ButtonPrimary, ButtonSecondary } from "../components/Button";
-import { Input, FileInput } from "react-daisyui";
-import { FaCommentDots, FaImages } from "react-icons/fa";
+import { InputStd } from "../components/Input";
+import { CardPost } from "./Card";
+import { FaImages } from "react-icons/fa";
 import { PostsType } from "../utils/types/posts";
 
 function Home() {
   const [isShownPost, setisShownPost] = useState(false);
   const [posts, setPosts] = useState<PostsType[]>([]);
-  const navigate = useNavigate();
 
   const handleClickPost = () => {
     setisShownPost((current) => !current);
-  };
-
-  const onClickDetail = (index: string) => {
-    navigate(`/detail-post/${index[0]}`);
   };
 
   useEffect(() => {
@@ -45,9 +41,8 @@ function Home() {
           className="w-16 rounded-full"
         />
         {!isShownPost ? (
-          <Input
+          <InputStd
             placeholder="What's on your mind?"
-            className="w-full rounded-xl border-2 border-secondary h-12"
             onClick={handleClickPost}
           />
         ) : (
@@ -80,42 +75,15 @@ function Home() {
       )}
 
       {posts.map((post) => (
-        <div
-          key={post.id_content}
-          className="bg-content border-2 border-secondary my-5 rounded-xl"
-        >
-          <div className="flex items-center gap-3 p-2">
-            <img
-              src={post.profilepicture}
-              alt="photo-profile"
-              className="w-12 h-12 rounded-full"
-            />
-            <div>
-              <h3>{post.users[0].username}</h3>
-              <p className="text-xs">{post.create_at}</p>
-            </div>
-          </div>
-          <div className="flex flex-col p-4">
-            <img src={post.image} alt="image-content" className="rounded-xl" />
-            <p
-              className="pt-4 cursor-pointer"
-              onClick={() => {
-                onClickDetail(post.id_content);
-              }}
-            >
-              {post.content}
-            </p>
-          </div>
-          <div
-            className="flex justify-end items-center gap-3 border-t-2 border-secondary p-2 px-2 cursor-pointer"
-            onClick={() => {
-              onClickDetail(post.id_content);
-            }}
-          >
-            <FaCommentDots />
-            <p>{post.comments}</p>
-          </div>
-        </div>
+        <CardPost
+          id={post.id_content}
+          ava={post.profilepicture}
+          uname={post.users[0].username}
+          date={post.create_at}
+          imgPost={post.image}
+          caption={post.content}
+          comment={post.comments}
+        />
       ))}
     </Layout>
   );
