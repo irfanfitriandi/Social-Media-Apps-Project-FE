@@ -9,7 +9,7 @@ import { useParams } from "react-router";
 function DetailPost() {
   const [post, setPost] = useState<PostType>();
 
-  const id_content = useParams();
+  const { id_content } = useParams();
 
   useEffect(() => {
     fetchDataPosts();
