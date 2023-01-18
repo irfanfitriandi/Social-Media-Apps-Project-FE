@@ -5,11 +5,17 @@ import { Button } from "react-daisyui";
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   label: string | JSX.Element;
   className?: string;
+  disabled?: boolean;
 }
 
-export const ButtonPrimary: FC<ButtonProps> = ({ label, className }) => {
+export const ButtonPrimary: FC<ButtonProps> = ({
+  label,
+  className,
+  disabled,
+}) => {
   return (
     <Button
+      disabled={disabled}
       className={`w-full bg-primary text-white mt-4 hover:bg-accent ${className}`}
     >
       {label}

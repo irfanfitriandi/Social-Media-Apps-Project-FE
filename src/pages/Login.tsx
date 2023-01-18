@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { Input, Form, Toggle, Button } from "react-daisyui";
@@ -14,6 +14,7 @@ function Login() {
     password: "",
   });
   const navigate = useNavigate();
+  const [isDisable, setIsDisable] = useState(true);
 
   const handleChange = (event: any) => {
     setFormLogin({
@@ -21,6 +22,14 @@ function Login() {
       [event.target.name]: event.target.value,
     });
   };
+
+  useEffect(() => {
+    if (formLogin.username === "" || formLogin.password === "") {
+      setIsDisable(true);
+    } else {
+      setIsDisable(false);
+    }
+  }, [formLogin]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -73,7 +82,7 @@ function Login() {
             <Toggle className="m-2" />
           </Form.Label>
         </Form> */}
-        <ButtonPrimary label="Login" />
+        <ButtonPrimary disabled={isDisable} label="Login" />
         <div className="mt-4 text-center">
           <p>Or</p>
         </div>
