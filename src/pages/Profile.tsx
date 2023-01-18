@@ -1,7 +1,10 @@
 import React from "react";
+
+import { ButtonPrimary, ButtonSecondary } from "../components/Button";
 import { LayoutProfile } from "../components/Layout";
 import { Button } from "react-daisyui";
 import { FaCommentDots } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Profile() {
   return (
@@ -21,12 +24,12 @@ function Profile() {
           </div>
         </div>
         <div className="flex justify-around py-4">
-          <Button className="w-1/3 bg-secondary text-white rounded-xl text-sm">
-            Edit Profile
-          </Button>
-          <Button className="w-1/3 bg-primary text-white rounded-xl hover:bg-accent text-sm">
-            Log Out
-          </Button>
+          <Link className="w-1/3" to={"/settings/:id_user"}>
+            <ButtonSecondary label="Edit Profile" />
+          </Link>
+          <div className="w-1/3">
+            <ButtonPrimary label="Log Out" />
+          </div>
         </div>
         <div className="mt-2">
           <h1 className="text-lg text-center pb-2 mx-24 underline underline-offset-[12px]">

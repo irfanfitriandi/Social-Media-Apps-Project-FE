@@ -3,7 +3,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 import { Layout } from "../components/Layout";
-import { Input, FileInput, Button } from "react-daisyui";
+import { ButtonPrimary, ButtonSecondary } from "../components/Button";
+import { Input, FileInput } from "react-daisyui";
 import { FaCommentDots, FaImages } from "react-icons/fa";
 import { PostsType } from "../utils/types/posts";
 
@@ -64,16 +65,16 @@ function Home() {
           style={{ transition: "visibility 0s, opacity 0.5s linear" }}
         >
           <textarea
+            placeholder="What's on your mind?"
             rows={9}
-            className="w-full bg-content border-2 border-secondary rounded-xl p-3"
+            className="w-full border-2 border-secondary rounded-xl p-3"
           ></textarea>
           <div className="flex justify-end gap-2">
-            <Button className="mt-2 border-[#606770] w-24 capitalize ">
-              <FaImages className="w-6 h-6" />
-            </Button>
-            <Button className="mt-2 border-[#606770] w-24 capitalize ">
-              Post
-            </Button>
+            <ButtonSecondary
+              className="w-1/4"
+              label={<FaImages className="text-xl" />}
+            />
+            <ButtonPrimary className="w-1/4" label="Post" />
           </div>
         </div>
       )}

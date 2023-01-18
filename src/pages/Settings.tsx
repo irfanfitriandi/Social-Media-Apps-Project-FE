@@ -1,8 +1,15 @@
 import React from "react";
 
+import {
+  ButtonPrimary,
+  ButtonSecondary,
+  ButtonAccent,
+} from "../components/Button";
 import { Input, Button } from "react-daisyui";
 import { FaImages } from "react-icons/fa";
 import { LayoutSettings } from "../components/Layout";
+
+import { Link } from "react-router-dom";
 
 function Settings() {
   return (
@@ -36,22 +43,16 @@ function Settings() {
           className="text-black bg-form border-2 border-secondary rounded-lg w-full mt-2"
         />
       </div>
-      <div className="flex justify-end mt-4">
-        <Button className="bg-primary text-white w-20">
-          <FaImages />
-        </Button>
+      <div className="w-1/4 mt-4">
+        <ButtonPrimary label={<FaImages className="text-xl" />} />
       </div>
-      <div className="flex gap-3 mx-1 justify-around mt-4">
-        <Button className="w-1/2 bg-secondary text-white hover:bg-zinc-800">
-          Cancel
-        </Button>
-        <Button className="w-1/2 bg-primary text-white  hover:bg-accent">
-          Save
-        </Button>
+      <div className="grid grid-cols-2 gap-3 mt-4">
+        <Link to={"/profile/:id_user"}>
+          <ButtonSecondary label="Cancel" />
+        </Link>
+        <ButtonPrimary label="Save" />
       </div>
-      <Button className="w-full mt-4 text-white bg-accent">
-        Delete Account
-      </Button>
+      <ButtonAccent label="Delete Account" />
     </LayoutSettings>
   );
 }

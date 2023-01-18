@@ -1,8 +1,10 @@
 import React from "react";
 
-import { Input, Form, Toggle, Button } from "react-daisyui";
-
+import { ButtonPrimary, ButtonSecondary } from "../components/Button";
+import { Input, Form, Toggle } from "react-daisyui";
 import { LayoutSettings } from "../components/Layout";
+
+import { Link } from "react-router-dom";
 
 function Login() {
   return (
@@ -28,15 +30,11 @@ function Login() {
           <Toggle className="m-2" />
         </Form.Label>
       </Form>
-      <Button className="w-full bg-primary text-white mt-4 hover:bg-accent">
-        Login
-      </Button>
+      <ButtonPrimary label="Login" />
       <div className="mt-4 text-center">
         <p>Or</p>
       </div>
-      <Button className="w-full bg-secondary text-white mt-4 hover:bg-zinc-800">
-        Register
-      </Button>
+      <ButtonSecondary label="Sign Up" />
     </LayoutSettings>
   );
 }

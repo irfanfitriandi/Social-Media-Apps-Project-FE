@@ -1,6 +1,7 @@
 import React from "react";
 
-import { Input, Form, Toggle, Button } from "react-daisyui";
+import { ButtonPrimary } from "../components/Button";
+import { InputForm } from "../components/Input";
 import { parsePath } from "react-router-dom";
 
 import { LayoutSettings } from "../components/Layout";
@@ -11,44 +12,25 @@ function Signup() {
       <h1 className="text-center text-3xl p-5">Sign Up</h1>
       <div className="mt-4">
         <h1>Username</h1>
-        <Input
-          placeholder="Username"
-          className="text-black bg-form border-2 border-secondary rounded-lg w-full mt-2"
-        />
+        <InputForm placeholder="Username" />
       </div>
       <div className="mt-4">
         <h1>Full Name</h1>
-        <Input
-          placeholder="Full Name"
-          className="text-black bg-form border-2 border-secondary rounded-lg w-full mt-2"
-        />
+        <InputForm placeholder="Full Name" />
       </div>
       <div className="mt-4">
         <h1>Email</h1>
-        <Input
-          placeholder="Email"
-          className="text-black bg-form border-2 border-secondary rounded-lg w-full mt-2"
-        />
+        <InputForm placeholder="Email" />
       </div>
       <div className="mt-4">
         <h1>Passsword</h1>
-        <Input
-          placeholder="Password"
-          className="text-black bg-form border-2 border-secondary rounded-lg w-full mt-2"
-          type={"password"}
-        />
+        <InputForm placeholder="Password" type={"password"} />
       </div>
       <div className="mt-4">
         <h1>Confirm Passsword</h1>
-        <Input
-          placeholder="Confirm Password"
-          className="text-black bg-form border-2 border-secondary rounded-lg w-full mt-2"
-          type={"password"}
-        />
+        <InputForm placeholder="Confirm Password" type={"password"} />
       </div>
-      <Button className="w-full bg-primary text-white mt-8 hover:bg-accent">
-        Sign up
-      </Button>
+      <ButtonPrimary className="mt-8" label={"Sign Up"} />
     </LayoutSettings>
   );
 }
