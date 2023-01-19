@@ -4,9 +4,9 @@ import { useCookies } from "react-cookie";
 
 import { Layout } from "../components/Layout";
 import { ButtonPrimary, ButtonSecondary } from "../components/Button";
+import { InputFile } from "../components/Input";
 import { InputStd } from "../components/Input";
 import { CardPost } from "../components/Card";
-import { FaImages } from "react-icons/fa";
 import { PostsType } from "../utils/types/posts";
 
 function Home() {
@@ -30,8 +30,7 @@ function Home() {
     axios
       .get("https://shirayuki.site/contents")
       .then((res) => {
-        // setPosts(res.data.data);
-        console.log(res.data.data[0]);
+        setPosts(res.data.data);
       })
       .catch((err) => {
         alert(err.toString());
@@ -43,13 +42,13 @@ function Home() {
     axios
       .post("https://shirayuki.site/contents")
       .then((res) => {
-        // setPosts(res.data.data);
-        console.log(res.data.data[0]);
+        setPosts(res.data.data);
       })
       .catch((err) => {
         alert(err.toString());
       });
   };
+  
 
   return (
     <Layout>
@@ -86,13 +85,11 @@ function Home() {
             className="w-full border-2 border-secondary rounded-xl p-3"
           ></textarea>
           <div className="flex justify-end gap-2">
-            {/* <ButtonSecondary
-              className="w-1/4"
-              label={<FaImages className="text-xl" />}
-            /> */}
+           
             <input
               type="file"
               name="file"
+              className="mt-5 file:bg-secondary file:p-2 file:rounded-lg"
               onChange={(event: any) => {
                 console.log(event.target.files[0]);
                 setSelectedImage(event.target.files[0]);
@@ -106,13 +103,13 @@ function Home() {
       {posts.map((post, index) => (
         <CardPost
           key={index}
-          id={post.id}
-          ava={post.users[0].profilepicture}
-          uname={post.users[0].username}
+          id={post.id_content}
+          ava={post.Users.profilepicture}
+          uname={post.Users.username}
           date={post.create_at}
-          imgPost={post.image}
+          imgPost={post.content_image}
           caption={post.content}
-          comment={post.comments}
+          comment={post.comment}
         />
       ))}
     </Layout>
