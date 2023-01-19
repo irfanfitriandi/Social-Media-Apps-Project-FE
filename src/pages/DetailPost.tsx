@@ -11,7 +11,7 @@ import { PostType } from "../utils/types/posts";
 function DetailPost() {
   const [post, setPost] = useState<PostType>();
 
-  const { id_content } = useParams();
+  const { id_post } = useParams();
 
   useEffect(() => {
     fetchDataPosts();
@@ -20,7 +20,7 @@ function DetailPost() {
   function fetchDataPosts() {
     axios
       .get(
-        `https://virtserver.swaggerhub.com/icxz1/SosmedAPI/1.0.0/contents/${id_content}`
+        `https://virtserver.swaggerhub.com/icxz1/SosmedAPI/1.0.0/contents/${id_post}`
       )
       .then((res) => {
         setPost(res.data.data);
