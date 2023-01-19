@@ -40,10 +40,7 @@ function Login() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     axios
-      .post(
-        "https://virtserver.swaggerhub.com/icxz1/SosmedAPI/1.0.0/login",
-        formLogin
-      )
+      .post("https://shirayuki.site/login", formLogin)
       .then((response) => {
         localStorage.setItem("token", response.data.data.token);
         setCookie("token", response.data.data.token);
