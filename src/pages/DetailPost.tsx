@@ -64,10 +64,7 @@ function DetailPost() {
       />
       <div className="bg-com border-2 border-secondary my-3 rounded-xl">
         {post?.comment.map((data) => (
-          <div
-            key={data.id_comment}
-            className="p-2 border-b-2 border-secondary"
-          >
+          <div key={data.id} className="p-2 border-b-2 border-secondary">
             <div className="flex items-center gap-3 pb-2">
               <img
                 src={data.users.profilepicture}

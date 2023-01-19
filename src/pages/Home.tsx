@@ -4,9 +4,9 @@ import { useCookies } from "react-cookie";
 
 import { Layout } from "../components/Layout";
 import { ButtonPrimary, ButtonSecondary } from "../components/Button";
+import { InputFile } from "../components/Input";
 import { InputStd } from "../components/Input";
 import { CardPost } from "../components/Card";
-import { FaImages } from "react-icons/fa";
 import { PostsType } from "../utils/types/posts";
 
 function Home() {
@@ -36,7 +36,6 @@ function Home() {
       .get("https://shirayuki.site/contents")
       .then((res) => {
         setPosts(res.data.data);
-        console.log(res.data.data);
       })
       .catch((err) => {
         alert(err.toString());
@@ -71,12 +70,12 @@ function Home() {
       })
       .then((res) => {
         setPosts(res.data.data);
-        console.log(res.data.data);
       })
       .catch((err) => {
         alert(err.toString());
       });
   };
+  
 
   // const handleChange = (event: any) => {
   //   setFormContent({
@@ -123,16 +122,16 @@ function Home() {
             className="w-full border-2 border-secondary rounded-xl p-3"
           ></textarea>
           <div className="flex justify-end gap-2">
-            {/* <ButtonSecondary
-              className="w-1/4"
-              label={<FaImages className="text-xl" />}
-            /> */}
+           
             <input
               type="file"
               name="file"
-              onChange={(e) =>
-                setFormContent({ ...formContent, file: e.target.files[0] })
-              }
+
+              className="mt-5 file:bg-secondary file:p-2 file:rounded-lg"
+              onChange={(event: any) => {
+                console.log(event.target.files[0]);
+                setSelectedImage(event.target.files[0]);
+              }}
             />
             <ButtonPrimary className="w-1/4" label="Post" />
           </div>
@@ -142,13 +141,13 @@ function Home() {
       {posts.map((post, index) => (
         <CardPost
           key={index}
-          Users={post.Users}
-          id_content={post.id_content}
-          profilepicture={post.Users.profilepicture}
-          username={post.Users.username}
-          create_at={post.create_at}
-          content_image={post.content_image}
-          content={post.content}
+
+          id={post.id_content}
+          ava={post.Users.profilepicture}
+          uname={post.Users.username}
+          date={post.create_at}
+          imgPost={post.content_image}
+          caption={post.content}
           comment={post.comment}
         />
       ))}

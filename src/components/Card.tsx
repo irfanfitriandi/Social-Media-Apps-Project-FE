@@ -10,9 +10,9 @@ interface CardProps {
   ava: string;
   uname: string;
   date: string;
-  imgPost?: string;
+  imgPost: string;
   caption: string;
-  comment?: number;
+  comment: number;
 }
 
 interface CardDetailProps {
