@@ -23,6 +23,7 @@ function Login() {
       [event.target.name]: event.target.value,
     });
   };
+
   const [cookies, setCookie, removeCookie] = useCookies([
     "token",
     "id_user",
@@ -40,13 +41,13 @@ function Login() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     axios
-      .post("https://shirayuki.site/login", formLogin)
+      .postForm("https://shirayuki.site/login", formLogin)
       .then((response) => {
-        localStorage.setItem("token", response.data.data.token);
-        setCookie("token", response.data.data.token);
+        localStorage.setItem("token", response.data.token);
+        setCookie("token", response.data.token);
         setCookie("id_user", response.data.data.id);
         setCookie("username", response.data.data.username);
-        console.log(response);
+        console.log(response.data, "aaa");
         console.log(formLogin);
 
         alert("Success Login");
