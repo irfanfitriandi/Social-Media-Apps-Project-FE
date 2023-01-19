@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 import { Layout } from "../components/Layout";
 import { ButtonPrimary, ButtonSecondary } from "../components/Button";
@@ -10,7 +11,11 @@ import { PostsType } from "../utils/types/posts";
 
 function Home() {
   const [isShownPost, setisShownPost] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies(["username"]);
   const [posts, setPosts] = useState<PostsType[]>([]);
+  const [content, setContent] = useState("");
+  const [image, setImage] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const handleClickPost = () => {
     setisShownPost((current) => !current);
@@ -18,19 +23,34 @@ function Home() {
 
   useEffect(() => {
     fetchDataPosts();
-  }, []);
+    console.log(selectedImage);
+  }, [selectedImage]);
 
   function fetchDataPosts() {
     axios
-      .get("https://virtserver.swaggerhub.com/icxz1/SosmedAPI/1.0.0/contents")
+      .get("https://shirayuki.site/contents")
       .then((res) => {
-        setPosts(res.data.data);
-        console.log(res.data.data);
+        // setPosts(res.data.data);
+        console.log(res.data.data[0]);
       })
       .catch((err) => {
         alert(err.toString());
       });
   }
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    axios
+      .post("https://shirayuki.site/contents")
+      .then((res) => {
+        // setPosts(res.data.data);
+        console.log(res.data.data[0]);
+      })
+      .catch((err) => {
+        alert(err.toString());
+      });
+  };
+
   return (
     <Layout>
       <div className="flex gap-2 my-5 items-center">
@@ -48,35 +68,46 @@ function Home() {
             onClick={handleClickPost}
             className="text-2xl ml-2 cursor-pointer"
           >
-            Dybala
+            {cookies.username}
           </h3>
         )}
       </div>
       {isShownPost && (
         <form
+          onSubmit={handleSubmit}
           className="px-2 "
           style={{ transition: "visibility 0s, opacity 0.5s linear" }}
         >
           <textarea
+            name="content"
+            onChange={(e) => setContent(e.target.value)}
             placeholder="What's on your mind?"
             rows={9}
             className="w-full border-2 border-secondary rounded-xl p-3"
           ></textarea>
           <div className="flex justify-end gap-2">
-            <ButtonSecondary
+            {/* <ButtonSecondary
               className="w-1/4"
               label={<FaImages className="text-xl" />}
+            /> */}
+            <input
+              type="file"
+              name="file"
+              onChange={(event: any) => {
+                console.log(event.target.files[0]);
+                setSelectedImage(event.target.files[0]);
+              }}
             />
             <ButtonPrimary className="w-1/4" label="Post" />
           </div>
         </form>
       )}
 
-      {posts.map((post) => (
+      {posts.map((post, index) => (
         <CardPost
-          key={post.id_content}
-          id={post.id_content}
-          ava={post.profilepicture}
+          key={index}
+          id={post.id}
+          ava={post.users[0].profilepicture}
           uname={post.users[0].username}
           date={post.create_at}
           imgPost={post.image}
