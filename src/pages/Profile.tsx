@@ -17,7 +17,7 @@ function Profile() {
 
   useEffect(() => {
     fetchDataUser();
-  }, []);
+  }, [setUser]);
 
   function fetchDataUser() {
     axios

@@ -5,7 +5,9 @@ function Header() {
     <div className="flex justify-center p-2 border-b-2 border-secondary max-w-4xl w-full fixed top-0 bg-black">
       <Link to={"/"}>
         <img
-          src="../src/assets/circle-logo.svg"
+          src="
+          https://svgshare.com/i/pf6.svg
+          "
           alt="circle-logo"
           className="w-12"
         />
