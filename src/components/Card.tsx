@@ -54,7 +54,7 @@ export const CardPost: FC<CardProps> = ({
       className="bg-content border-2 border-secondary my-5 rounded-xl"
     >
       <div className="flex items-center gap-3 p-2">
-        <div>
+        <div className="w-32">
           <img
             src={ava}
             alt="photo-profile"

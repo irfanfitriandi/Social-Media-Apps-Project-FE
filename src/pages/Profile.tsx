@@ -1,24 +1,45 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 import { LayoutProfile } from "../components/Layout";
 import { ButtonPrimary, ButtonSecondary } from "../components/Button";
-import { FaCommentDots } from "react-icons/fa";
+import { CardPost } from "../components/Card";
+
+import { UserType } from "../utils/types/users";
 
 function Profile() {
+  const [user, setUser] = useState<UserType>();
+
+  useEffect(() => {
+    fetchDataUser();
+  }, []);
+
+  function fetchDataUser() {
+    axios
+      .get("https://virtserver.swaggerhub.com/icxz1/SosmedAPI/1.0.0/users")
+      .then((res) => {
+        setUser(res.data.data);
+      })
+      .catch((err) => {
+        alert(err.toString());
+      });
+  }
+
   return (
     <LayoutProfile>
       <h1 className="text-5xl text-center bg-accent py-16">Profile</h1>
       <div className="relative top-[-56px]">
         <div className="w-full flex flex-col items-center">
           <img
-            src="https://pbs.twimg.com/profile_images/1610613801526890500/aBOa83uV_400x400.jpg"
+            src={user?.profilepicture}
             alt="photo-profile"
-            className="w-28 rounded-full border-2 border-secondary"
+            className="w-28 h-28 rounded-full border-2 border-secondary"
           />
-          <h1 className="text-4xl mt-2">Dybala</h1>
+          <h1 className="text-4xl mt-2">{user?.username}</h1>
           <div className="text-center mt-2">
-            <p>Dybala Rosario</p>
-            <p>Hey there! I am using Circle</p>
+            <p>-Full Name-</p>
+            <p>{user?.bio}</p>
           </div>
         </div>
         <div className="flex justify-around py-4">
@@ -34,80 +55,19 @@ function Profile() {
             My Post
           </h1>
         </div>
-        <div className="bg-content border-2 border-secondary m-5 rounded-xl">
-          <div className="flex items-center gap-3 p-2">
-            <img
-              src="https://pbs.twimg.com/profile_images/1610613801526890500/aBOa83uV_400x400.jpg"
-              alt="photo-profile"
-              className="w-12 rounded-full"
+        <div className="m-5">
+          {user?.contents.map((content) => (
+            <CardPost
+              key={content.id}
+              id={content.id}
+              ava={content.profilepicture}
+              uname={content.username}
+              date={content.create_at}
+              imgPost={content.image}
+              caption={content.content}
+              comment={content.comments}
             />
-            <div>
-              <h3>Dybala</h3>
-              <p className="text-xs">30 Feb at 11.11 PM</p>
-            </div>
-          </div>
-          <div className="flex flex-col p-4">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-              animi hic sequi quam! Repudiandae mollitia pariatur minus?
-              Corrupti excepturi earum, nihil officia magni ut ipsum error sit
-              non provident incidunt!
-            </p>
-          </div>
-          <div className="flex justify-end items-center gap-3 border-t-2 border-secondary pt-2 px-2">
-            <FaCommentDots />
-            <p>5</p>
-          </div>
-        </div>
-        <div className="bg-content border-2 border-secondary m-5 rounded-xl">
-          <div className="flex items-center gap-3 p-2">
-            <img
-              src="https://pbs.twimg.com/profile_images/1610613801526890500/aBOa83uV_400x400.jpg"
-              alt="photo-profile"
-              className="w-12 rounded-full"
-            />
-            <div>
-              <h3>Dybala</h3>
-              <p className="text-xs">30 Feb at 11.11 PM</p>
-            </div>
-          </div>
-          <div className="flex flex-col p-4">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-              animi hic sequi quam! Repudiandae mollitia pariatur minus?
-              Corrupti excepturi earum, nihil officia magni ut ipsum error sit
-              non provident incidunt!
-            </p>
-          </div>
-          <div className="flex justify-end items-center gap-3 border-t-2 border-secondary pt-2 px-2">
-            <FaCommentDots />
-            <p>5</p>
-          </div>
-        </div>
-        <div className="bg-content border-2 border-secondary m-5 rounded-xl">
-          <div className="flex items-center gap-3 p-2">
-            <img
-              src="https://pbs.twimg.com/profile_images/1610613801526890500/aBOa83uV_400x400.jpg"
-              alt="photo-profile"
-              className="w-12 rounded-full"
-            />
-            <div>
-              <h3>Dybala</h3>
-              <p className="text-xs">30 Feb at 11.11 PM</p>
-            </div>
-          </div>
-          <div className="flex flex-col p-4">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta
-              animi hic sequi quam! Repudiandae mollitia pariatur minus?
-              Corrupti excepturi earum, nihil officia magni ut ipsum error sit
-              non provident incidunt!
-            </p>
-          </div>
-          <div className="flex justify-end items-center gap-3 border-t-2 border-secondary pt-2 px-2">
-            <FaCommentDots />
-            <p>5</p>
-          </div>
+          ))}
         </div>
       </div>
     </LayoutProfile>
