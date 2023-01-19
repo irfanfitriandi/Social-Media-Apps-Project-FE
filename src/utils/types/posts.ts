@@ -1,33 +1,38 @@
 export interface PostsType {
-  id: number;
+  id_content: number;
   content: string;
-  image: string;
+  content_image: string;
   create_at: string;
-  users: [
-    {
-      id_user: string;
-      username: string;
-      profilepicture: string;
-    }
-  ];
-  comments: number;
+  Users: {
+    id_user: string;
+    username: string;
+    name: string;
+    profilepicture: string;
+  };
+  comment: number;
 }
 
 export interface PostType {
   content: string;
   create_at: string;
-  id_content: number;
+  id: number;
   image: string;
-  profilepicture: string;
-  username: string;
+  comments: number;
+  users: {
+    id_user: number;
+    profilepicture: string;
+    username: string;
+  };
   comment: [
     {
       comment: string;
-      created_at: string;
-      id_comment: number;
-      id_user: number;
-      profilepicture: string;
-      username: string;
+      create_at: string;
+      id: number;
+      users: {
+        id_users: number;
+        profilepicture: string;
+        username: string;
+      };
     }
   ];
 }

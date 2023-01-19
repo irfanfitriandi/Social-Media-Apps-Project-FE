@@ -19,9 +19,7 @@ function DetailPost() {
 
   function fetchDataPosts() {
     axios
-      .get(
-        `https://virtserver.swaggerhub.com/icxz1/SosmedAPI/1.0.0/contents/${id_post}`
-      )
+      .get(`https://shirayuki.site/contents/${id_post}`)
       .then((res) => {
         setPost(res.data.data);
         console.log(res.data.data);
@@ -33,26 +31,23 @@ function DetailPost() {
   return (
     <Layout>
       <CardPostDetail
-        ava={post?.profilepicture}
-        uname={post?.username}
+        ava={post?.users.profilepicture}
+        uname={post?.users.username}
         date={post?.create_at}
         imgPost={post?.image}
         caption={post?.content}
-        comment={post?.comment}
+        comments={post?.comments}
       />
       <div className="bg-com border-2 border-secondary my-3 rounded-xl">
         {post?.comment.map((data) => (
-          <div
-            key={data.id_comment}
-            className="p-2 border-b-2 border-secondary"
-          >
+          <div key={data.id} className="p-2 border-b-2 border-secondary">
             <div className="flex items-center gap-3 pb-2">
               <img
-                src={data.profilepicture}
+                src={data.users.profilepicture}
                 alt="photo-profile"
                 className="w-12 h-12 rounded-full"
               />
-              <h3>{data.username}</h3>
+              <h3>{data.users.username}</h3>
             </div>
             <p>{data.comment}</p>
           </div>

@@ -1,13 +1,14 @@
 export interface UserType {
   id: number;
-  bio: string;
-  username: string;
+  name: string;
   profilepicture: string;
-  contents: [
+  username: string;
+  bio: string;
+  content: [
     {
       id: number;
       content: string;
-      image: string;
+      content_image: string;
       create_at: string;
       username: string;
       profilepicture: string;

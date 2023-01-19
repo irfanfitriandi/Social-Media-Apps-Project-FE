@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
+import { useCookies } from "react-cookie";
+
 import { LayoutProfile } from "../components/Layout";
 import { ButtonPrimary, ButtonSecondary } from "../components/Button";
 import { CardPost } from "../components/Card";
@@ -10,6 +12,8 @@ import { UserType } from "../utils/types/users";
 
 function Profile() {
   const [user, setUser] = useState<UserType>();
+  const [cookie, removeCookie] = useCookies(["token", "id_user", "username"]);
+  const checkToken = cookie.token;
 
   useEffect(() => {
     fetchDataUser();
@@ -17,7 +21,11 @@ function Profile() {
 
   function fetchDataUser() {
     axios
-      .get("https://virtserver.swaggerhub.com/icxz1/SosmedAPI/1.0.0/users")
+      .get("https://shirayuki.site/users/", {
+        headers: {
+          Authorization: `Bearer ${checkToken}`,
+        },
+      })
       .then((res) => {
         setUser(res.data.data);
       })
@@ -38,7 +46,7 @@ function Profile() {
           />
           <h1 className="text-4xl mt-2">{user?.username}</h1>
           <div className="text-center mt-2">
-            <p>-Full Name-</p>
+            <p>{user?.name}</p>
             <p>{user?.bio}</p>
           </div>
         </div>
@@ -56,14 +64,14 @@ function Profile() {
           </h1>
         </div>
         <div className="m-5">
-          {user?.contents.map((content) => (
+          {user?.content.map((content) => (
             <CardPost
               key={content.id}
               id={content.id}
-              ava={content.profilepicture}
-              uname={content.username}
+              ava={user.profilepicture}
+              uname={user.username}
               date={content.create_at}
-              imgPost={content.image}
+              imgPost={content.content_image}
               caption={content.content}
               comment={content.comments}
             />
