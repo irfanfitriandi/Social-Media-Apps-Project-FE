@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 import { PostOption } from "./Dropdown";
 import { FaCommentDots } from "react-icons/fa";
+import { PostsType } from "../utils/types/posts";
 
 interface CardProps {
   id: number;
@@ -21,6 +22,7 @@ interface CardDetailProps {
   date?: string;
   imgPost?: string;
   caption?: string;
+  comments?: number;
   comment?: [
     {
       comment: string;
@@ -33,13 +35,13 @@ interface CardDetailProps {
   ];
 }
 
-export const CardPost: FC<CardProps> = ({
-  id,
-  ava,
-  uname,
-  date,
-  imgPost,
-  caption,
+export const CardPost: FC<PostsType> = ({
+  id_content,
+  profilepicture,
+  username,
+  create_at,
+  content_image,
+  content,
   comment,
 }) => {
   const navigate = useNavigate();
@@ -53,34 +55,34 @@ export const CardPost: FC<CardProps> = ({
       <div className="flex items-center gap-3 p-2">
         <div className="w-32">
           <img
-            src={ava}
+            src={profilepicture}
             alt="photo-profile"
             className="w-12 h-12 rounded-full max-w-none"
           />
         </div>
         <div className="w-full">
-          <h3>{uname}</h3>
-          <p className="text-xs">{date}</p>
+          <h3>{username}</h3>
+          <p className="text-xs">{create_at}</p>
         </div>
         <div className="w-full flex justify-end">
-          <PostOption id={id} />
+          <PostOption id={id_content} />
         </div>
       </div>
       <div className="flex flex-col p-4">
-        <img src={imgPost} alt="image-content" className="rounded-xl" />
+        <img src={content_image} alt="image-content" className="rounded-xl" />
         <p
           className="pt-4 cursor-pointer"
           onClick={() => {
-            onClickDetail(id);
+            onClickDetail(id_content);
           }}
         >
-          {caption}
+          {content}
         </p>
       </div>
       <div
         className="flex justify-end items-center gap-3 border-t-2 border-secondary p-2 px-2 cursor-pointer"
         onClick={() => {
-          onClickDetail(id);
+          onClickDetail(id_content);
         }}
       >
         <FaCommentDots />
@@ -96,7 +98,7 @@ export const CardPostDetail: FC<CardDetailProps> = ({
   date,
   imgPost,
   caption,
-  comment,
+  comments,
 }) => {
   return (
     <div className="bg-content border-2 border-secondary my-5 rounded-xl">
@@ -113,7 +115,7 @@ export const CardPostDetail: FC<CardDetailProps> = ({
       </div>
       <div className="flex justify-end items-center gap-3 border-t-2 border-secondary p-2 px-2 cursor-pointer">
         <FaCommentDots />
-        <p>{comment?.length}</p>
+        <p>{comments}</p>
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  const [cookie, , removeCookie] = useCookies(["token", "id_user"]);
+  const [cookie, , removeCookie] = useCookies(["token", "id_user", "username"]);
   const checkToken = cookie.token;
 
   axios.interceptors.request.use(function (config: any) {
@@ -69,6 +69,7 @@ function App() {
       ) {
         removeCookie("token");
         removeCookie("id_user");
+        removeCookie("username");
       }
       return Promise.reject(error);
     }

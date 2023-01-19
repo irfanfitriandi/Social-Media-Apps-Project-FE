@@ -48,10 +48,10 @@ function Signup() {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // if (rePassword != formSignup.password) {
-    //   alert("Password not match");
-    //   return;
-    // }
+    if (rePassword != formSignup.password) {
+      alert("Password not match");
+      return;
+    }
     axios
       .post("https://shirayuki.site/register", formSignup)
       .then((response) => {
