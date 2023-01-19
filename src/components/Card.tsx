@@ -49,16 +49,13 @@ export const CardPost: FC<CardProps> = ({
   };
 
   return (
-    <div
-      key={id}
-      className="bg-content border-2 border-secondary my-5 rounded-xl"
-    >
+    <div className="bg-content border-2 border-secondary my-5 rounded-xl">
       <div className="flex items-center gap-3 p-2">
         <div>
           <img
             src={ava}
             alt="photo-profile"
-            className="w-12 h-12 rounded-full"
+            className="w-12 h-12 rounded-full max-w-none"
           />
         </div>
         <div className="w-full">
@@ -66,7 +63,7 @@ export const CardPost: FC<CardProps> = ({
           <p className="text-xs">{date}</p>
         </div>
         <div className="w-full flex justify-end">
-          <PostOption />
+          <PostOption id={id} />
         </div>
       </div>
       <div className="flex flex-col p-4">

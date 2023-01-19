@@ -1,13 +1,13 @@
 export interface PostsType {
-  id_content: number;
+  id: number;
   content: string;
   image: string;
   create_at: string;
-  profilepicture: string;
   users: [
     {
       id_user: string;
       username: string;
+      profilepicture: string;
     }
   ];
   comments: number;

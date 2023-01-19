@@ -16,8 +16,8 @@ import { LayoutSettings } from "../components/Layout";
 
 function Signup() {
   const [formSignup, setFormSignup] = useState({
+    name: "",
     username: "",
-    fullname: "",
     email: "",
     password: "",
   });
@@ -34,8 +34,8 @@ function Signup() {
 
   useEffect(() => {
     if (
+      formSignup.name === "" ||
       formSignup.username === "" ||
-      formSignup.fullname === "" ||
       formSignup.email === "" ||
       formSignup.password === ""
     ) {
@@ -43,19 +43,17 @@ function Signup() {
     } else {
       setIsDisable(false);
     }
+    console.log(formSignup);
   }, [formSignup]);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (rePassword != formSignup.password) {
-      alert("Password not match");
-      return;
-    }
+    // if (rePassword != formSignup.password) {
+    //   alert("Password not match");
+    //   return;
+    // }
     axios
-      .post(
-        "https://virtserver.swaggerhub.com/icxz1/SosmedAPI/1.0.0/register",
-        formSignup
-      )
+      .post("https://shirayuki.site/register", formSignup)
       .then((response) => {
         console.log(response);
 
@@ -86,10 +84,10 @@ function Signup() {
           <h1>Full Name</h1>
           <Input
             type="text"
-            name="fullname"
+            name="name"
             placeholder="Full Name"
             onChange={handleChange}
-            value={formSignup.fullname}
+            value={formSignup.name}
             className="text-black bg-form border-2 border-secondary rounded-lg w-full mt-2"
           />
         </div>
