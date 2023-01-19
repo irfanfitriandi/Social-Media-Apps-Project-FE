@@ -1,4 +1,4 @@
-import { Button } from "react-daisyui";
+import { ButtonPrimary } from "../components/Button";
 import { Layout } from "../components/Layout";
 
 export const EditPost = () => {
@@ -17,13 +17,12 @@ export const EditPost = () => {
       </div>
       <div className="px-2">
         <textarea
+          placeholder={`caption prev. . .`}
           rows={9}
           className="w-full bg-content border-2 border-secondary rounded-xl p-3"
         ></textarea>
         <div className="flex justify-end ">
-          <Button className="mt-2 border-[#606770] w-24 capitalize ">
-            Save
-          </Button>
+          <ButtonPrimary className="w-1/4" label="Save" />
         </div>
       </div>
     </Layout>

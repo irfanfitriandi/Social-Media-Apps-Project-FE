@@ -1,6 +1,7 @@
 import { FC } from "react";
 import { useNavigate } from "react-router-dom";
 
+import { PostOption } from "./Dropdown";
 import { FaCommentDots } from "react-icons/fa";
 
 interface CardProps {
@@ -53,10 +54,19 @@ export const CardPost: FC<CardProps> = ({
       className="bg-content border-2 border-secondary my-5 rounded-xl"
     >
       <div className="flex items-center gap-3 p-2">
-        <img src={ava} alt="photo-profile" className="w-12 h-12 rounded-full" />
         <div>
+          <img
+            src={ava}
+            alt="photo-profile"
+            className="w-12 h-12 rounded-full"
+          />
+        </div>
+        <div className="w-full">
           <h3>{uname}</h3>
           <p className="text-xs">{date}</p>
+        </div>
+        <div className="w-full flex justify-end">
+          <PostOption />
         </div>
       </div>
       <div className="flex flex-col p-4">
