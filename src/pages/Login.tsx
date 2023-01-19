@@ -7,6 +7,7 @@ import { Input, Form, Toggle, Button } from "react-daisyui";
 import { LayoutSettings } from "../components/Layout";
 import { InputForm } from "../components/Input";
 import { ButtonPrimary, ButtonSecondary } from "../components/Button";
+import { useCookies } from "react-cookie";
 
 function Login() {
   const [formLogin, setFormLogin] = useState({
@@ -22,6 +23,11 @@ function Login() {
       [event.target.name]: event.target.value,
     });
   };
+  const [cookies, setCookie, removeCookie] = useCookies([
+    "token",
+    "id_user",
+    "username",
+  ]);
 
   useEffect(() => {
     if (formLogin.username === "" || formLogin.password === "") {
@@ -40,6 +46,9 @@ function Login() {
       )
       .then((response) => {
         localStorage.setItem("token", response.data.data.token);
+        setCookie("token", response.data.data.token);
+        setCookie("id_user", response.data.data.id);
+        setCookie("username", response.data.data.username);
         console.log(response);
         console.log(formLogin);
 

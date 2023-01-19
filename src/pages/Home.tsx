@@ -53,7 +53,7 @@ function Home() {
         )}
       </div>
       {isShownPost && (
-        <div
+        <form
           className="px-2 "
           style={{ transition: "visibility 0s, opacity 0.5s linear" }}
         >
@@ -69,7 +69,7 @@ function Home() {
             />
             <ButtonPrimary className="w-1/4" label="Post" />
           </div>
-        </div>
+        </form>
       )}
 
       {posts.map((post) => (
